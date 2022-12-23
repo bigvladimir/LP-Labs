@@ -1,11 +1,3 @@
-%?-solve_g(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X).
-%?-solve_sh(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X).
-%?-solve_it(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X).
-%?-time(solve_g(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X)).
-%?-time(solve_sh(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X)).
-%?-time(solve_it(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X)).
-
-
 my_member(X, [X|_]).
 my_member(X,[_|Y]) :- member(X,Y).
 
@@ -55,3 +47,11 @@ search_id(S,F,P,DL) :- path_g([S],F,P,DL).
 
 path_g([B|P],B,[B|P],0).
 path_g(A,B,H,N) :- N > 0, prolong(A,C), N1 is N-1, path_g(C,B,H,N1).
+
+
+%?-solve_g(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X).
+%?-solve_sh(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X).
+%?-solve_it(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X).
+%?-time(solve_g(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X)).
+%?-time(solve_sh(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X)).
+%?-time(solve_it(["b","b","b","b","_","w","w","w"],["w","w","w","_","b","b","b","b"],X)).
