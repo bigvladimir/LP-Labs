@@ -171,9 +171,15 @@ dfs(X, Y, R2):-
 	translator(R1, R2).
 ```
 
-Пример работы:
+Примеры работы:
 ```
+?- dist_relative(Y, 'Ольгерд (Александр) Гедиминович, вел.кн. Литовский', 'Юлиана Александровна, кнж. Киевская').
+Y = [daughter, son, son]
+Y = [sister, daughter, son, son]
+Y = [sister, brother, daughter, son, son]
 
+?- dist_relative(Y, 'Всеволод III Святославич Чермный, вел.кн. Киевский', 'Владимир II Всеволодович Мономах, вел.кн Киевский').
+Y = [son, brother, father, brother, father, father, father]
 ```
 
 
