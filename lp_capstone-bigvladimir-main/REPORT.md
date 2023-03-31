@@ -73,12 +73,13 @@
 ```python
     text = ""
     with open("families.pl", "r") as file:
-      for line in file:
-        if "Киевск" in line:
-          text += line
+          for line in file:
+                if "Киевск" in line:
+                      text += line
     with open("kyivfamilies.pl", "w") as file:
-      file.write(text)
+          file.write(text)
 ```
+
 ## Предикат поиска родственника
 
 Опишите, как устроен предикат поиска родственника, приведите его исходный код и примеры запросов/ответов (протокол работы).
