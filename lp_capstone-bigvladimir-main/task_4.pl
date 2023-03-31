@@ -106,31 +106,31 @@ wife(X, Y):-
 	father(Y, Z).
 
 % тривиальный случай
-relative('father', X, Y):- father(X, Y).
-relative('mother', X, Y):- mother(X, Y).
-relative('brother', X, Y):- brother(X, Y).
-relative('sister', X, Y):- sister(X, Y).
-relative('husband', X, Y):- husband(X, Y).
-relative('wife', X ,Y):- wife(X, Y).
-relative('son', X, Y):- son(X, Y).
-relative('daughter', X, Y):- daughter(X, Y).
-relative('grandson', X, Y):- grandson(X, Y).
-relative('granddaughter', X, Y):- granddaughter(X, Y).
-relative('grandfather', X, Y):- grandfather(X, Y).
-relative('grandmother', X, Y):- grandmother(X, Y).
-relative('aunt', X, Y):- aunt(X, Y).
-relative('uncle', X, Y):- uncle(X, Y).
-relative('cousin', X, Y):- cousin(X, Y).
-relative('second cousin', X, Y):- second_cousin(X, Y).
+dist_relative('father', X, Y):- father(X, Y).
+dist_relative('mother', X, Y):- mother(X, Y).
+dist_relative('brother', X, Y):- brother(X, Y).
+dist_relative('sister', X, Y):- sister(X, Y).
+dist_relative('husband', X, Y):- husband(X, Y).
+dist_relative('wife', X ,Y):- wife(X, Y).
+dist_relative('son', X, Y):- son(X, Y).
+dist_relative('daughter', X, Y):- daughter(X, Y).
+dist_relative('grandson', X, Y):- grandson(X, Y).
+dist_relative('granddaughter', X, Y):- granddaughter(X, Y).
+dist_relative('grandfather', X, Y):- grandfather(X, Y).
+dist_relative('grandmother', X, Y):- grandmother(X, Y).
+dist_relative('aunt', X, Y):- aunt(X, Y).
+dist_relative('uncle', X, Y):- uncle(X, Y).
+dist_relative('cousin', X, Y):- cousin(X, Y).
+dist_relative('second cousin', X, Y):- second_cousin(X, Y).
 
-relative(W, X, Y):- 
+dist_relative(W, X, Y):- 
 	dfs(X, Y, W).
 
 % перевод списка имён в список отношений
 translator([X, Y], [R]):-
-	relative(R, X, Y).
+	dist_relative(R, X, Y).
 translator([X, Y|T], [P, Q|R]):-
-	relative(P, X, Y),
+	dist_relative(P, X, Y),
 	translator([Y|T], [Q|R]), !.
 
 move(X, Y):-
