@@ -171,22 +171,28 @@ dfs(X, Y, R2):-
 	translator(R1, R2).
 ```
 
-Примеры работы:
+Пример работы:
 ```
 ?- dist_relative(Y, 'Ольгерд (Александр) Гедиминович, вел.кн. Литовский', 'Юлиана Александровна, кнж. Киевская').
-Y = [daughter, son, son]
-Y = [sister, daughter, son, son]
-Y = [sister, brother, daughter, son, son]
-
-?- dist_relative(Y, 'Всеволод III Святославич Чермный, вел.кн. Киевский', 'Владимир II Всеволодович Мономах, вел.кн Киевский').
-Y = [son, brother, father, brother, father, father, father]
+Y = [daughter, son, son] ;
+Y = [sister, daughter, son, son] ;
+Y = [sister, brother, daughter, son, son] ;
+Y = [daughter, mother, brother, daughter, son, son] ;
+Y = [daughter, mother, daughter, son, son] ;
+Y = [sister, son, mother, daughter, son, son] ;
+Y = [sister, son, son, son] ;
+Y = [sister, sister, son, son, son] ;
+Y = [daughter, mother, sister, son, son, son] ;
+Y = [daughter, mother, son, son, son] ;
+Y = [sister, daughter, mother, son, son, son] ;
+Y = [daughter, wife, son, son] ;
+Y = [sister, daughter, wife, son, son] ;
+Y = [sister, brother, daughter, wife, son, son] ;
+Y = [sister, son, wife, son, son] ;
+Y = [sister, sister, son, wife, son, son] ;
+Y = [sister, brother, daughter, wife, son, son];
 ```
-
-
-## Естественно-языковый интерфейс
 
 ## Выводы
 
-Сформулируйте *содержательные* выводы по курсовому проекту в целом. Чему он вас научила? 
-Над чем заставила задуматься? Помните, что несодержательные выводы -
-самая частая причина снижения оценки.
+Курсовой проект оказался необычным. Познакомился форматом файлов GEDCOM. Научился реализовывать некоторые алгоритмы на Prolog, пока разбирался с заданиями. Вместе с рефератом получился хороший итог курса логического программирования.
