@@ -37,8 +37,48 @@
 
 Для решения задачи я использовал python, так как он хорошо подходит для таких задач из-за своей простоты и возможности быстро написать код.
 Получилось две программы, основная и вспомогательная, сначала опишу основную:
+1. Читаем строки с метками NAME, FAMS, FAMC, SEX (FAMS - семья родителей, FAMC - семья самой персоны). Сразу обрабатываем строки с именами и удаляем лишнее: уровни в начале каждой строки и некоторые знаки.
+```python
+    for line in gedFile:
+    for each in ["NAME", "FAMS", "FAMC", "SEX"]:
+        if each in line:
+            newline = line.split(' ')[1:]
+            newline[-1] = newline[-1].replace("\n", "")
+            if newline[0] == "NAME":
+              newline[1] = " ".join(newline[1:]).replace("/", "").replace("'", "")
+              del newline[2:]
+            result.append(newline)
+    gedFile.close()
+```
+2. Собираем родителей и детей в один список семей.
+3. Записываем в новый файл в нужном отсортированном формате.
+```python
+    for family in families:
+    if len(family[2]) == 0:
+        continue
+    for child in family[2]:
+        for parent in family[1]:
+            if parent[1] == "M":
+                facts.append("father(\'" + parent[0] + "\', \'" + child[0] + "\').\n")
+            else:
+                facts.append("mother(\'" + parent[0] + "\', \'" + child[0] + "\').\n")
+    facts.sort(key=lambda st: st[0])
+    for i in facts:
+        output.write(i)
+```
 
+Результат находится в файле `families.pl`.
 
+И небольшая программа для того чтобы из этого огромного списка отсортировать нужную родословную, результат в `kyivfamilies.pl`.
+```python
+    text = ""
+    with open("families.pl", "r") as file:
+      for line in file:
+        if "Киевск" in line:
+          text += line
+    with open("kyivfamilies.pl", "w") as file:
+      file.write(text)
+```
 ## Предикат поиска родственника
 
 Опишите, как устроен предикат поиска родственника, приведите его исходный код и примеры запросов/ответов (протокол работы).
