@@ -102,8 +102,19 @@ second_cousin(X, Y):-
 	mother(B, X),
 	cousin(A, B).
 ```
-Все остальные предикаты в файле `task_3.pl`.  
-Примеры работы:
+Все остальные предикаты в файле `task_3.pl`.
+
+Примеры работы на простых данных:
+```
+?- second_cousin('Antosha', 'Dimas').
+true.
+
+?- second_cousin('Antosha', 'Antosha').
+false.
+
+?- second_cousin('Antosha', Y).
+Y = 'Dimas'.
+```
 
 ## Определение степени родства
 
