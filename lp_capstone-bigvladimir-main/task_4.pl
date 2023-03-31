@@ -108,10 +108,10 @@ wife(X, Y):-
 % тривиальный случай
 relative('father', X, Y):- father(X, Y).
 relative('mother', X, Y):- mother(X, Y).
-relative('husband', X, Y):- husband(X, Y).
-relative('wife', X ,Y):- wife(X, Y).
 relative('brother', X, Y):- brother(X, Y).
 relative('sister', X, Y):- sister(X, Y).
+relative('husband', X, Y):- husband(X, Y).
+relative('wife', X ,Y):- wife(X, Y).
 relative('son', X, Y):- son(X, Y).
 relative('daughter', X, Y):- daughter(X, Y).
 relative('grandson', X, Y):- grandson(X, Y).
