@@ -148,7 +148,8 @@ move(X, Y):-
 	granddaughter(X, Y),
 	aunt(X, Y),
 	uncle(X, Y),
-	cousin(X, Y).
+	cousin(X, Y),
+	second_cousin(X, Y).
 
 prolong([X|T], [Y, X|T]):-
 	move(X, Y),
