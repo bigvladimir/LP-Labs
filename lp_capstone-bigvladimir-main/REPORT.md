@@ -118,9 +118,64 @@ Y = 'Dimas'.
 
 ## Определение степени родства
 
-Добавил к предикатам из `task_3.pl` несколько простых предикатов поиска для близких степеней родства.  
+Добавил к предикатам из `task_3.pl` несколько простых предикатов поиска для близких степеней родства.
+`dist_relative` сначала рассматривает простые случаи.
 
-`relative` сначала рассма
+```prolog
+dist_relative('father', X, Y):- father(X, Y).
+dist_relative('mother', X, Y):- mother(X, Y).
+dist_relative('brother', X, Y):- brother(X, Y).
+dist_relative('sister', X, Y):- sister(X, Y).
+%и т.д.
+```
+
+Затем начинается поиск в глубину для определения более дальних степеней родства.  
+Находятся все пути и переводятся в список отношений.
+
+```prolog
+dist_relative(W, X, Y):- 
+	dfs(X, Y, W).
+
+% перевод списка имён в список отношений
+translator([X, Y], [R]):-
+	dist_relative(R, X, Y).
+translator([X, Y|T], [P, Q|R]):-
+	dist_relative(P, X, Y),
+	translator([Y|T], [Q|R]), !.
+move(X, Y):-
+	father(X, Y);
+	mother(X, Y);
+	brother(X, Y);
+	sister(X, Y);
+	son(X, Y);
+	daughter(X, Y);
+	husband(X, Y);
+	wife(X, Y),
+	grandfather(X, Y),
+	grandmother(X, Y),
+	grandson(X, Y),
+	granddaughter(X, Y),
+	aunt(X, Y),
+	uncle(X, Y),
+	cousin(X, Y),
+	second_cousin(X, Y).
+prolong([X|T], [Y, X|T]):-
+	move(X, Y),
+	not(member(Y, [X|T])).
+path1([X|T], X, [X|T]).
+path1(L, Y, R):-
+	prolong(L, T),
+	path1(T, Y, R).
+dfs(X, Y, R2):-
+	path1([X], Y, R1),
+	translator(R1, R2).
+```
+
+Пример работы:
+```
+
+```
+
 
 ## Естественно-языковый интерфейс
 
